@@ -1,0 +1,31 @@
+:root {
+  --font_light: 'Tajawal-Light';
+  --font_regular: 'Tajawal-Regular';
+  --font_medium: 'Tajawal-Medium';
+  --font_bold: 'Tajawal-Bold';
+}
+
+// Latin and Arabic font family
+@font-face {
+  font-family: 'Tajawal-Light';
+  src: url('/assets/fonts/Tajawal/Tajawal-Light.ttf') format("truetype");
+}
+
+
+@font-face {
+  font-family: 'Tajawal-Regular';
+  src: url('/assets/fonts/Tajawal/Tajawal-Regular.ttf') format("truetype");
+
+}
+
+@font-face {
+  font-family: 'Tajawal-Medium';
+  src: url('/assets/fonts/Tajawal/Tajawal-Medium.ttf') format("truetype");
+
+}
+
+@font-face {
+  font-family: 'Tajawal-Bold';
+  src: url('/assets/fonts/Tajawal/Tajawal-Bold.ttf') format("truetype");
+
+}

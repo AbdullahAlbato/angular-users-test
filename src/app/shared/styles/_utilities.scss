@@ -1,0 +1,53 @@
+@import "./variables";
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.opacity80-hover {
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.opacity90-hover {
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+.text-primary-color {
+    color: $primary_color !important;
+}
+
+.text-black-color {
+    color: $black_color !important;
+}
+
+.text-secondary-color {
+    color: $secondary_color !important;
+}
+
+.text-tertiary-color {
+    color: $tertiary_color !important;
+}
+
+.text-error-color {
+    color: $error_color !important;
+}
+
+.text-tone-color {
+    color: $tone_color !important;
+}
+
+.bg-tertiary99 {
+    background-color: $tertiary99_color !important;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.position-relative {
+    position: relative;
+}

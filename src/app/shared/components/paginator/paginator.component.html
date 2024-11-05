@@ -1,0 +1,12 @@
+<div class="mat-paginator"
+    [ngClass]="{'mat-paginator-primary': theme === 'primary', 'mat-paginator-secondary': theme === 'secondary'}">
+    <!-- Actions Section -->
+    <div class="mat-paginator--actions">
+        <mat-paginator *ngIf="!loading" [pageSize]="rows" [length]="totalRecords" [pageSizeOptions]="[5, 10, 20]"
+            (page)="handlePageChange($event)">
+        </mat-paginator>
+        <div class="action-skeleton" *ngIf="loading">
+            <mat-progress-spinner *ngFor="let _ of [1, 2, 3]" diameter="32" mode="indeterminate"></mat-progress-spinner>
+        </div>
+    </div>
+</div>

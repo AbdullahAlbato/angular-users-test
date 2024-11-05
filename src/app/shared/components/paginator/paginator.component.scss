@@ -1,0 +1,12 @@
+// @import 'src/app/shared/styles/functions';
+// @import 'src/app/shared/styles/mixin';
+
+.mat-paginator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .mat-paginator--actions {
+        width: 100%;
+    }
+}

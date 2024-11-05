@@ -1,0 +1,7 @@
+<div class="empty-result">
+    <h2>{{msgTitle}}</h2>
+    <p>{{msgContent}}</p>
+    <button *ngIf="linkTitle" class="ebtn ebtn-primary" type="button" (click)="onClickLink.emit()" [routerLink]="link">
+        {{linkTitle}}
+    </button>
+</div>

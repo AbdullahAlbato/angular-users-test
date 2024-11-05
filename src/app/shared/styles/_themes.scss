@@ -1,0 +1,81 @@
+// light theme
+.theme-light {
+    //Primary color
+    --primary_color: #6C998C;
+    --primary_rgb_color: 108, 153, 140;
+    --primary_rgb_color: 108, 153, 140;
+    --primary80_color: #CFE2DD;
+    --primary90_color: #B8CEC8;
+    --primary95_color: #CEE7DF;
+    --primary99_color: #EEF2F0;
+    --primary100_color: #F3F6F5;
+    //Secondary color
+    --secondary_color: #242424;
+    --secondary_rgb_color: 36, 36, 36;
+    --secondary_rgb_color: 36, 36, 36;
+    --secondary_main_color: #101820;
+
+    //Tertiary color
+    --tertiary_color: #FCDA94;
+    --tertiary_rgb_color: 251, 220, 142;
+    --tertiary_rgb_color: 251, 220, 142;
+    --tertiary95_color: #FFEFD4;
+    --tertiary99_color: #FCF7F3;
+    --tertiary100_color: #F9F2E7;
+    // Tertiary Tone color 
+    --tertiary_tone98_color: #F6EEF0;
+    --tertiary_fixed_color: #5B4300;
+
+    //Error color
+    --error_color: #E7564C;
+    --error_rgb_color: 255, 180, 171;
+    --error_rgb_color: 255, 180, 171;
+    --error_main_color: #D32F2F;
+    --error95_color: #FFEDEA;
+    //Error Shades Color
+    --error_shades190p_color: linear-gradient(0deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 100%), #D32F2F;
+
+    //Success color
+    --success_main_color: #2E7D32;
+    //Success Shades Color
+    --success_shades190p_color: linear-gradient(0deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 100%), #2E7D32;
+
+
+    //Neutral Color
+    --neutral50_color: #747878;
+    --neutral60_color: #8E9192;
+    --neutral70_color: #A9ACAC;
+    --neutral80_color: #C4C7C7;
+    --neutral87_color: #D8DADB;
+    --neutral90_color: #E1E3E3;
+    --neutral92_color: #E6E8E9;
+    --neutral94_color: #ECEEEF;
+    --neutral95_color: #EFF1F1;
+    --neutral96_color: #F2F4F4;
+    --neutral99_color: #F7F7F7;
+
+    //Neutral Variant Color
+    --neutral_variant60_color: #899294;
+    --neutral_variant87_color: #D2DCDE;
+    --neutral_variant90_color: #DBE4E6;
+    //Tone Color
+    --tone_color: #D89BAE;
+    --tone100_color: #FCF3F5;
+    --tone_rgb_color: 216, 155, 174;
+
+    //Value color
+    --value_color: #D89BAE;
+    --white_color: #FFFFFF;
+    --black_color: #000000;
+    --black_rgb_color: 0, 0, 0;
+    --white_rgb_color: 255, 255, 255;
+    --light_gray: #DAD9D9;
+    // Kuroi Color
+    --kuroi_black50_color: #E7E8E9;
+    --kuroi_black200_color: #919598;
+    //Other color
+    --head_color: #222;
+    --google_color: #E54545;
+    --facebook_color: #2D75E8;
+    --apple_color: #000000;
+}

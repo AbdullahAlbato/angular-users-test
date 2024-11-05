@@ -1,0 +1,29 @@
+<div class="user-details-wrap">
+  <div class="dashboard-page-header">
+    <h1>{{ "User Details" }}</h1>
+    <nav aria-label="breadcrumb">
+      <mat-toolbar>
+        <a mat-button routerLink="/dashboard/users">Users</a>
+        <mat-icon>chevron_right</mat-icon>
+        <span *ngIf="user$ | async as user">{{ user.first_name }} {{ user.last_name }}</span>
+      </mat-toolbar>
+    </nav>
+  </div>
+  <div class="dashboard-page-content">
+    <div *ngIf="user$ | async as user; else loading">
+
+
+      <div class="user-detail-card">
+        <img [src]="user.avatar" alt="{{ user.first_name }} {{ user.last_name }}" class="avatar">
+        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+        <p>ID: {{ user.id }}</p>
+        <p>Email: {{ user.email }}</p>
+      </div>
+    </div>
+
+    <ng-template #loading>
+      <p>Loading user details...</p>
+    </ng-template>
+
+  </div>
+</div>

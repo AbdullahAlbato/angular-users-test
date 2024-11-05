@@ -1,0 +1,14 @@
+@import '../../../shared/styles/functions';
+@import '../../../shared/styles/mixin';
+
+.edynamic-table {
+    .mat-mdc-row .mat-mdc-cell {
+
+        cursor: pointer;
+    }
+
+    .mat-mdc-row:hover .mat-mdc-cell {
+        background-color: $primary80_color;
+    }
+
+}

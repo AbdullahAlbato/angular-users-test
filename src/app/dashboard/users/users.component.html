@@ -1,0 +1,12 @@
+<div class="users-wrap">
+    <div class="dashboard-page-header">
+        <h1>{{'Users'}}</h1>
+    </div>
+    <div class="dashboard-page-content" #userListContainer>
+        <dynamic-table [dataSource]="users$ | async" [columns]="columns" [pagination]="pagination"
+            [loading]="loading$ | async" [noDataTitle]="'No results'" [noDataMessage]="'No results'"
+            [selectedFilters]="getSelectedFilters(filters)" [enableRowSelection]="true"
+            (onRowSelection)="navigateToUserDetails($event)" (onFilter)="handleUserFilters($event)"
+            (onPageChange)="handlePageChange($event)"></dynamic-table>
+    </div>
+</div>

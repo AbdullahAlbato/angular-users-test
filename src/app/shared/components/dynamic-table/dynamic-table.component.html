@@ -1,0 +1,118 @@
+<div class="edynamic-table" #dTableContainer>
+    <!-- Table template on a large screen -->
+
+    <table mat-table [dataSource]="dataSource" *ngIf="dataSource">
+        <!-- Column Definitions -->
+        <ng-container matColumnDef="{{ column.field }}" *ngFor="let column of columns">
+            <th mat-header-cell *matHeaderCellDef> {{ column.header }} </th>
+            <td mat-cell *matCellDef="let row">
+                <ng-container *ngTemplateOutlet="rowDataTemplate; context: { row, column }"></ng-container>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="mapColumns(columns)"></tr>
+        <tr mat-row *matRowDef="let row; columns: mapColumns(columns)" (click)="onRowSelection.emit(row)"></tr>
+    </table>
+    <paginator [totalRecords]="pagination.length" [rows]="pagination.pageSize" [page]="pagination.pageIndex"
+        [loading]="loading" (onPageChange)="handlePageChange($event)"></paginator>
+
+    <!-- Empty State -->
+    <div *ngIf="hasNoData" class="table-empty">
+        <empty-result [msgTitle]="noDataTitle" [msgContent]="noDataMessage"></empty-result>
+    </div>
+
+    <!-- Small Screen Table as Cards -->
+    <div class="edynamic-tabel-small" *ngIf="showTableCardMode && !hasNoData">
+        <ng-container *ngFor="let row of dataSource">
+            <mat-card class="tcard" [ngClass]="{'tcard-withactions': actions.length}">
+                <!-- Card Content Here -->
+            </mat-card>
+        </ng-container>
+    </div>
+</div>
+
+<mat-sidenav-container>
+    <mat-sidenav [(opened)]="showSidebarFilters" mode="side" [position]="'start'">
+        <mat-toolbar>{{ 'Filters'}}</mat-toolbar>
+        <ng-container *ngFor="let column of columns">
+            <ng-container *ngIf="column?.hasFilter">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>{{ column.header}}</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <ng-container *ngTemplateOutlet="radioTemplate; context: { column }"></ng-container>
+                    <ng-container *ngTemplateOutlet="checkboxTemplate; context: { column }"></ng-container>
+                    <ng-container *ngTemplateOutlet="calendarTemplate; context: { column }"></ng-container>
+                </mat-expansion-panel>
+            </ng-container>
+        </ng-container>
+        <button mat-button (click)="clearFilters()">{{ 'home.clear'}}</button>
+    </mat-sidenav>
+</mat-sidenav-container>
+
+<ng-template #rowDataTemplate let-column="column" let-row="row">
+    <ng-container [ngSwitch]="column.type">
+        <ng-container *ngSwitchCase="'text'">{{ row[column.field] }}</ng-container>
+        <ng-container *ngSwitchCase="'price'">€{{ row[column.field].toFixed(2) }}</ng-container>
+        <ng-container *ngSwitchCase="'dateTime'">{{ row[column.field] | date:'MMMM, EEEE d, y, HH:mm' }}</ng-container>
+        <ng-container *ngSwitchCase="'status'">
+            <span class="status" [ngClass]="'status-'+findFieldItem(column.fieldItems, row[column.field]).varient">
+                {{ findFieldItem(column.fieldItems, row[column.field]).label}}
+            </span>
+        </ng-container>
+        <!-- Image -->
+        <ng-container *ngSwitchCase="'image'">
+            <img [src]="row[column.field]" alt="{{ column.header }}"
+                style="max-width: 100px; max-height: 100px;border-radius: 50%;" />
+        </ng-container>
+    </ng-container>
+</ng-template>
+
+<ng-template #radioTemplate let-column="column">
+    <mat-menu [overlapTrigger]="false" [hasBackdrop]="true" *ngIf="column.filterType === 'radio'">
+        <div class="edropdown-panel">
+            <div class="fgroup" *ngFor="let statusItem of column?.fieldItems">
+                <mat-radio-button [id]="column.field + '_option_' + statusItem.value"
+                    [(ngModel)]="filters.get(column.field)!.value" (click)="onChangeFilter(column.field)">
+                    {{ statusItem.label }}
+                </mat-radio-button>
+            </div>
+        </div>
+    </mat-menu>
+</ng-template>
+
+<ng-template #checkboxTemplate let-column="column">
+    <mat-menu [overlapTrigger]="false" [hasBackdrop]="true" *ngIf="column.filterType === 'checkbox'">
+        <div class="edropdown-panel">
+            <div class="fgroup">
+                <mat-checkbox [id]="column.field + '_option_all'" [value]="ALL"
+                    [(ngModel)]="filters.get(column.field)!.value"
+                    (change)="onChangeCheckbox(column, filters.get(column.field)!.value, true)">
+                    {{ 'All' }}
+                </mat-checkbox>
+            </div>
+            <div class="fgroup" *ngFor="let statusItem of column?.fieldItems">
+                <mat-checkbox [id]="column.field + '_option_' + statusItem.value" [value]="statusItem.value"
+                    [(ngModel)]="filters.get(column.field)!.value"
+                    (change)="onChangeCheckbox(column, filters.get(column.field)!.value, false)">
+                    {{ statusItem.label }}
+                </mat-checkbox>
+            </div>
+        </div>
+    </mat-menu>
+</ng-template>
+
+<ng-template #calendarTemplate let-column="column">
+    <mat-menu [overlapTrigger]="false" [hasBackdrop]="true" *ngIf="column.filterType === 'calendar'">
+        <div class="overlay-calendar">
+            <mat-date-range-picker [(ngModel)]="filters.get(column.field)!.value"
+                (dateChange)="onChangeFilter(column.field)">
+            </mat-date-range-picker>
+            <div class="calendar-footer">
+                <button mat-button class="ebtn ebtn-neutral94" (click)="clearFilterValue(column.field)">
+                    {{ "Clear" }}
+                </button>
+            </div>
+        </div>
+    </mat-menu>
+</ng-template>
